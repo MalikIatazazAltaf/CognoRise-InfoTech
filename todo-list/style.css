@@ -1,0 +1,146 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef2f3;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styling */
+header {
+    background-color: #4a4e69;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #4a4e69;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Main Content Styling */
+main.content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    flex: 1 0 auto; 
+}
+
+/* Image Container Styling */
+.image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.side-image {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* To-Do List Container Styling */
+.container {
+    background: #f2e9e4;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    width: 320px;
+    text-align: center;
+    margin-top: 20px;
+    border: 2px solid #4a4e69;
+    flex-shrink: 0; 
+}
+
+/* Input Group Styling */
+.input-group {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px 0 0 8px;
+    font-size: 16px;
+    color: #22223b;
+}
+
+button {
+    padding: 10px 16px;
+    border: none;
+    background-color: #9a8c98;
+    color: white;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #c9ada7;
+}
+
+/* Task List Styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+li {
+    background-color: #ffffff;
+    margin-bottom: 8px;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    color: #22223b;
+}
+
+li span {
+    flex: 1;
+    margin-left: 10px;
+    text-align: left;
+}
+
+/* Enhanced Edit and Delete Button Colors */
+li .edit, li .delete {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+}
+
+li .edit {
+    background-color: #ff9800; /* Bright orange for edit */
+}
+
+li .edit:hover {
+    background-color: #fb8c00; /* Slightly darker on hover */
+}
+
+li .delete {
+    background-color: #f44336; /* Bright red for delete */
+}
+
+li .delete:hover {
+    background-color: #e53935; /* Slightly darker on hover */
+}
