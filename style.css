@@ -1,146 +1,107 @@
-/* General Styles */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #eef2f3;
+/* style.css */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* Header Styling */
 header {
-    background-color: #4a4e69;
-    color: white;
+    background-color: #4CAF50;
     padding: 20px;
     text-align: center;
-    flex-shrink: 0;
+    color: white;
 }
 
-/* Footer Styling */
 footer {
-    background-color: #4a4e69;
+    background-color: #333;
     color: white;
-    padding: 10px;
     text-align: center;
-    flex-shrink: 0;
-}
-
-/* Main Content Styling */
-main.content {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
-    flex: 1 0 auto; 
-}
-
-/* Image Container Styling */
-.image-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-right: 20px;
-}
-
-.side-image {
-    max-width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-}
-
-/* To-Do List Container Styling */
-.container {
-    background: #f2e9e4;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    width: 320px;
-    text-align: center;
-    margin-top: 20px;
-    border: 2px solid #4a4e69;
-    flex-shrink: 0; 
-}
-
-/* Input Group Styling */
-.input-group {
-    display: flex;
-    margin-bottom: 15px;
-}
-
-input[type="text"] {
-    flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px 0 0 8px;
-    font-size: 16px;
-    color: #22223b;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: auto;
 }
 
-button {
-    padding: 10px 16px;
+.quiz-container {
+    max-width: 600px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.question {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.options {
+    margin-bottom: 20px;
+}
+
+.option {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #007bff;
+    color: white;
     border: none;
-    background-color: #9a8c98;
-    color: white;
-    border-radius: 0 8px 8px 0;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #c9ada7;
+.option:hover {
+    background-color: #0056b3;
 }
 
-/* Task List Styling */
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    max-height: 400px;
-    overflow-y: auto;
-}
-
-li {
-    background-color: #ffffff;
-    margin-bottom: 8px;
-    padding: 12px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    color: #22223b;
-}
-
-li span {
-    flex: 1;
-    margin-left: 10px;
-    text-align: left;
-}
-
-/* Enhanced Edit and Delete Button Colors */
-li .edit, li .delete {
-    margin-left: 10px;
-    cursor: pointer;
-    font-size: 14px;
-    padding: 4px 8px;
-    border-radius: 4px;
+.next-btn {
+    background-color: #28a745;
     color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-li .edit {
-    background-color: #ff9800; /* Bright orange for edit */
+.next-btn:hover {
+    background-color: #218838;
 }
 
-li .edit:hover {
-    background-color: #fb8c00; /* Slightly darker on hover */
+#result-container {
+    display: none;
+    text-align: center;
 }
 
-li .delete {
-    background-color: #f44336; /* Bright red for delete */
+#result-container h2 {
+    color: #28a745;
 }
 
-li .delete:hover {
-    background-color: #e53935; /* Slightly darker on hover */
+#result-container button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .quiz-container {
+        width: 90%;
+        margin: 20px auto;
+    }
 }

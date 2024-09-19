@@ -1,79 +1,76 @@
-// Get DOM elements
-const taskInput = document.getElementById('taskInput');
-const addTaskBtn = document.getElementById('addTaskBtn');
-const taskList = document.getElementById('taskList');
+// script.js
+const questions = [
+    {
+        question: "What comes next in the sequence: 2, 4, 8, 16?",
+        options: ["24", "32", "22", "18"],
+        answer: 1
+    },
+    {
+        question: "What is 9 + 10?",
+        options: ["19", "20", "21", "22"],
+        answer: 0
+    },
+    {
+        question: "Which shape has three sides?",
+        options: ["Square", "Triangle", "Circle", "Rectangle"],
+        answer: 1
+    },
+    {
+        question: "Which of these is a prime number?",
+        options: ["4", "6", "8", "11"],
+        answer: 3
+    }
+];
 
-// Load tasks from local storage on page load
-document.addEventListener('DOMContentLoaded', loadTasks);
+let currentQuestionIndex = 0;
+let score = 0;
+let selectedAnswer = null;
 
-// Add event listener to add task button
-addTaskBtn.addEventListener('click', addTask);
-
-// Load tasks from local storage
-function loadTasks() {
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.forEach(task => addTaskToDOM(task));
+function loadQuestion() {
+    const currentQuestion = questions[currentQuestionIndex];
+    document.getElementById("question").innerText = currentQuestion.question;
+    document.getElementById("option0").innerText = currentQuestion.options[0];
+    document.getElementById("option1").innerText = currentQuestion.options[1];
+    document.getElementById("option2").innerText = currentQuestion.options[2];
+    document.getElementById("option3").innerText = currentQuestion.options[3];
+    document.getElementById("next-btn").style.display = "none";  // Hide the next button until an option is selected
+    selectedAnswer = null;  // Reset selected answer for each new question
 }
 
-// Add task
-function addTask() {
-    const taskText = taskInput.value.trim();
-    if (taskText !== '') {
-        const task = { text: taskText };
-        addTaskToDOM(task);
-        saveTask(task);
-        taskInput.value = '';
+function selectOption(index) {
+    selectedAnswer = index;  // Store the selected answer
+    document.getElementById("next-btn").style.display = "block";  // Show the next button once an option is selected
+}
+
+function nextQuestion() {
+    const correctAnswer = questions[currentQuestionIndex].answer;
+    
+    // Check if the selected answer is correct and update the score before moving to the next question
+    if (selectedAnswer === correctAnswer) {
+        score++;
+    }
+
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < questions.length) {
+        loadQuestion();  // Load the next question if available
+    } else {
+        showResult();  // If no more questions, show the result
     }
 }
 
-// Add task to DOM
-function addTaskToDOM(task) {
-    const li = document.createElement('li');
-    li.innerHTML = `
-        <span>${task.text}</span>
-        <button class="edit">Edit</button>
-        <button class="delete">Delete</button>
-    `;
-    taskList.appendChild(li);
-
-    // Add event listeners to edit and delete buttons
-    li.querySelector('.edit').addEventListener('click', () => editTask(li, task));
-    li.querySelector('.delete').addEventListener('click', () => deleteTask(li, task));
+function showResult() {
+    document.getElementById("quiz-content").style.display = "none";  // Hide the quiz content
+    document.getElementById("result-container").style.display = "block";  // Show the result container
+    document.getElementById("score-display").innerText = "Your score is: " + score + " out of " + questions.length;
 }
 
-// Save task to local storage
-function saveTask(task) {
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.push(task);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+function restartQuiz() {
+    currentQuestionIndex = 0;  // Reset the question index
+    score = 0;  // Reset the score
+    document.getElementById("quiz-content").style.display = "block";  // Show the quiz content
+    document.getElementById("result-container").style.display = "none";  // Hide the result container
+    loadQuestion();  // Load the first question
 }
 
-// Edit task
-function editTask(li, task) {
-    const newTaskText = prompt('Edit task:', task.text);
-    if (newTaskText !== null && newTaskText.trim() !== '') {
-        task.text = newTaskText.trim();
-        li.querySelector('span').textContent = task.text;
-        updateTaskInStorage(task);
-    }
-}
-
-// Update task in local storage
-function updateTaskInStorage(updatedTask) {
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks = tasks.map(task => task.text === updatedTask.text ? updatedTask : task);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-}
-
-// Delete task
-function deleteTask(li, task) {
-    li.remove();
-    removeTaskFromStorage(task);
-}
-
-// Remove task from local storage
-function removeTaskFromStorage(taskToRemove) {
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks = tasks.filter(task => task.text !== taskToRemove.text);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-}
+window.onload = loadQuestion;
